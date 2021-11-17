@@ -31,13 +31,13 @@ describe('OlympusBondingCalculator', () => {
           depositor
         ] = await ethers.getSigners();
 
-        TestToken1Contract = await ethers.getContractFactory('TestToken1');
+        TestToken1Contract = await ethers.getContractFactory('DAI');
         tt1 = await TestToken1Contract.connect(deployer).deploy();
 
-        TestToken2Contract = await ethers.getContractFactory('TestToken2');
+        TestToken2Contract = await ethers.getContractFactory('FRAX');
         tt2 = await TestToken2Contract.connect(deployer).deploy();
 
-        UniswapV2FactoryContract = await ethers.getContractFactory('UniswapV2Factory');
+        UniswapV2FactoryContract = await ethers.getContractFactory('yarb');
         uniFactory = await UniswapV2FactoryContract.connect(deployer).deploy( deployer.address );
 
         // pairAddress = await uniFactory.createPair( tt1.address, tt2.address );
@@ -59,7 +59,7 @@ describe('OlympusBondingCalculator', () => {
       'Deployment', 
       () => {
         it(
-          "calcDebtfRatioForToken( address tokenToCalcDebt_, address debtCalcToConsult_ )",
+          "calcDebtfRatioForToken( address tokenToCalcDebt_, address debtCalcToConsult_, null, null )",
           async () => {
             // await expect( () => tt1.connect(deployer).transfer( pairAddress, ethers.utils.parseUnits( String( 10000 ) ) ) )
             //   .to.changeTokenBalance( tt1, deployer, ethers.utils.parseUnits( String( -10000 ) ));
